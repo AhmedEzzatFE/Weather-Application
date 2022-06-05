@@ -32,7 +32,6 @@ const updateUI = (data) => {
 cityForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const city = cityForm.city.value.trim();
-  localStorage.setItem("city", city);
   cityForm.reset();
 
   updateCity(city)
@@ -42,9 +41,10 @@ cityForm.addEventListener("submit", (e) => {
     .catch((err) => {
       console.log(err);
     });
+  localStorage.setItem("city", city);
 });
 if (localStorage.getItem("city")) {
-  const cityStored=localStorage.getItem("city")
+  const cityStored = localStorage.getItem("city");
   updateCity(cityStored)
     .then((data) => {
       updateUI(data);
